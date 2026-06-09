@@ -11,6 +11,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BookService {
+    private final BookRepository bookRepository;
+
+    public List<Book> getBookList() {
+        return bookRepository.findAll();
+    }
+
+    public Book getBookDetail(Long id) {
+        return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
+    }
+}
 
     private final BookRepository bookRepository;
 
