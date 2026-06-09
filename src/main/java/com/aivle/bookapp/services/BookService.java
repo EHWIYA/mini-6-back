@@ -1,8 +1,5 @@
 package com.aivle.bookapp.services;
 
-<<<<<<< HEAD
-public class BookService {
-=======
 
 import com.aivle.bookapp.domain.Book;
 import com.aivle.bookapp.repository.BookRepository;
@@ -17,7 +14,7 @@ public class BookService {
 
     @Transactional(readOnly = true)
     public Book findById(Long id) {
-        return bookRepository.findById(id).orElseThrow(() -> new RuntimeException("id가" +id +"없습니다")); //BookNotFoundException(id));
+        return bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
     }
 
     @Transactional
@@ -25,7 +22,7 @@ public class BookService {
         if(bookRepository.existsById(id)){
             bookRepository.deleteById(id);
         }else{
-            throw new RuntimeException("id가" +id +"없습니다");//BookNotFoundException(id);
+            throw new BookNotFoundException(id);
         }
     }
 
@@ -56,5 +53,4 @@ public class BookService {
 
         return bookRepository.save(existing);
     }
->>>>>>> 27cf3f2 (Initial commit)
 }
