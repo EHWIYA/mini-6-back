@@ -18,7 +18,6 @@ public class BookService {
     }
 
     public Book getBookDetail(Long id) {
-        return bookRepository.findById(id)
-                .orElseThrow(BookNotFoundException::new);
+        return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 }
