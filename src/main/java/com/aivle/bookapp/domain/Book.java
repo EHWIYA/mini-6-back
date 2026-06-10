@@ -27,8 +27,6 @@ public class Book {
     @NotBlank
     private String content;
 
-    @Column(nullable = true)
-    @NotBlank
     private String genre;
 
 
