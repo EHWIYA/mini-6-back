@@ -3,7 +3,7 @@ package com.aivle.bookapp.controller;
 import com.aivle.bookapp.dto.review.ReviewCreateRequest;
 import com.aivle.bookapp.dto.review.ReviewResponse;
 import com.aivle.bookapp.dto.review.ReviewUpdateRequest;
-import com.aivle.bookapp.service.ReviewService;
+import com.aivle.bookapp.services.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +18,11 @@ public class ReviewController {
     @GetMapping("/books/{bookId}/reviews")
     public List<ReviewResponse> getReviewsByBook(@PathVariable Long bookId) {
         return reviewService.getReviewsByBook(bookId);
+    }
+
+    @GetMapping("/books/{bookId}/reviews/rating")
+    public Double getAverageRating(@PathVariable Long bookId) {
+        return reviewService.getAverageRating(bookId);
     }
 
     @PostMapping("/books/{bookId}/reviews")

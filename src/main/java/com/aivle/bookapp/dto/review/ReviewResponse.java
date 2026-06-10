@@ -13,7 +13,7 @@ public class ReviewResponse {
     private Long id;
     private Long bookId;
     private String content;
-    private Integer rating;
+    private Double rating;
     private Integer likeCount;
     private LocalDateTime createdAt;
 

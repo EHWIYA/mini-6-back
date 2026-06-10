@@ -27,7 +27,7 @@ public class Review {
 
     // 1~5점 별점
     @Column(nullable = false)
-    private Integer rating;
+    private double rating;
 
     @Column(name = "like_count", nullable = false)
     private Integer likeCount;
@@ -39,12 +39,12 @@ public class Review {
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
 
-        if (this.likeCount == null){
+        if (this.likeCount == null) {
             this.likeCount = 0;
         }
     }
 
-    public void update(String content, Integer rating) {
+    public void update(String content, Double rating) {
         this.content = content;
         this.rating = rating;
     }

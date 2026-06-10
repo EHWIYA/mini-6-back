@@ -1,4 +1,4 @@
-package com.aivle.bookapp.service;
+package com.aivle.bookapp.services;
 
 import com.aivle.bookapp.domain.Book;
 import com.aivle.bookapp.domain.Review;
@@ -82,8 +82,18 @@ public class ReviewService {
         return ReviewResponse.from(review);
     }
 
+    // 별점 조회 ( 소수점 첫째자리수 )
+    public Double getAverageRating(Long bookId) {
+        Double averageRating = reviewRepository.findAverageRatingByBookId(bookId);
+
+        if (averageRating == null) {
+            return 0.0;
+        }
+        return Math.round(averageRating * 10) / 10.0;
+    }
+
     // 별점 검증
-    private void validateRating(Integer rating) {
+    private void validateRating(Double rating) {
         if (rating == null || rating < 1 || rating > 5) {
             throw new RuntimeException("별점은 1점 이상 5점 이하만 가능합니다.");
         }

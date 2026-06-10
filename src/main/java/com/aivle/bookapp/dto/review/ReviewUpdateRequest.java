@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 public class ReviewUpdateRequest {
 
     private String content;
-    private Integer rating;
+    private Double rating;
 }
