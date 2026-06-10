@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,13 +18,17 @@ public class FeedbackService {
     private final ReviewRepository reviewRepository;
 
     // 피드백 조회
-    public List<Feedback> getFeedbackList(Long reviewId) {
-        return feedbackRepository.findByReviewId(reviewId);
+    public Feedback getFeedback(Long reviewId) {
+        return feedbackRepository.findByReviewId(reviewId).orElseThrow(() -> new BusinessException(ErrorCode.FEEDBACK_NOT_FOUND));
     }
 
     // 피드백 등록
     public Feedback createFeedback(Long reviewId, Feedback feedback) {
         Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new BusinessException(ErrorCode.REVIEW_NOT_FOUND));
+
+        if (feedbackRepository.existsByReviewId(reviewId)) {
+            throw new BusinessException(ErrorCode.FEEDBACK_ALREADY_EXISTS);
+        }
 
         feedback.setReview(review);
         feedback.setCreatedAt(LocalDateTime.now());
@@ -38,10 +41,11 @@ public class FeedbackService {
     public Feedback updateFeedback(Long feedbackId, Feedback request) {
         Feedback feedback = feedbackRepository.findById(feedbackId).orElseThrow(() -> new BusinessException(ErrorCode.FEEDBACK_NOT_FOUND));
 
-        if (request.getContent() != null) {
-            feedback.setContent(request.getContent());
+        if (request.getContent() == null || request.getContent().isBlank()) {
+            throw new BusinessException(ErrorCode.INVALID_INPUT_VALUE);
         }
 
+        feedback.setContent(request.getContent());
         feedback.setUpdatedAt(LocalDateTime.now());
 
         return feedbackRepository.save(feedback);

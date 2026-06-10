@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 public class FeedbackController {
@@ -15,8 +13,8 @@ public class FeedbackController {
 
     // 피드백 조회
     @GetMapping("/reviews/{reviewId}/feedback")
-    public List<Feedback> getFeedbackList(@PathVariable Long reviewId) {
-        return feedbackService.getFeedbackList(reviewId);
+    public Feedback getFeedback(@PathVariable Long reviewId) {
+        return feedbackService.getFeedback(reviewId);
     }
 
     // 피드백 등록
