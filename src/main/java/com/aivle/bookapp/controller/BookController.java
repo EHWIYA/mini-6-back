@@ -55,11 +55,11 @@ public class BookController {
 
     // 키워드 검색: GET /books/search?q=
     @GetMapping("/search")
-    public List<BookResponse> searchBooks(@RequestParam(required = false) String keyword) {
-        if (keyword == null || keyword.trim().isEmpty()) {
+    public List<BookResponse> searchBooks(@RequestParam(required = false) String q) {
+        if (q == null || q.trim().isEmpty()) {
             return bookList();
         }
-        return bookService.searchBooks(keyword).stream()
+        return bookService.searchBooks(q).stream()
                 .map(BookResponse::from)
                 .toList();
     }
