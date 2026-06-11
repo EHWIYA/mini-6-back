@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,12 +21,10 @@ public class FeedbackService {
     private final FeedbackRepository feedbackRepository;
     private final ReviewRepository reviewRepository;
 
-    // 피드백 조회
-    public FeedbackResponse getFeedback(Long reviewId) {
-        Feedback feedback = feedbackRepository.findByReviewId(reviewId)
-                .orElseThrow(() -> new BusinessException(ErrorCode.FEEDBACK_NOT_FOUND));
-
-        return FeedbackResponse.from(feedback);
+    // 피드백 조회 — 없으면 204 (리뷰 미존재·피드백 미존재 동일 처리)
+    public Optional<FeedbackResponse> getFeedback(Long reviewId) {
+        return feedbackRepository.findByReviewId(reviewId)
+                .map(FeedbackResponse::from);
     }
 
     // 피드백 등록
