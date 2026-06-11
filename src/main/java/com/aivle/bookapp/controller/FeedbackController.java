@@ -15,8 +15,10 @@ public class FeedbackController {
 
     // 피드백 조회
     @GetMapping("/reviews/{reviewId}/feedback")
-    public FeedbackResponse getFeedback(@PathVariable Long reviewId) {
-        return feedbackService.getFeedback(reviewId);
+    public ResponseEntity<FeedbackResponse> getFeedback(@PathVariable Long reviewId) {
+        return feedbackService.getFeedback(reviewId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
     }
 
     // 피드백 등록
