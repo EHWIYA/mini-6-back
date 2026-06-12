@@ -150,11 +150,7 @@ VALUES
 
     (30, '도파민네이션', '애나 렘키',
      '쾌락과 중독, 균형의 문제를 현대 사회의 행동 패턴과 연결해 설명하는 심리·의학 교양서입니다.',
-     14, NULL, 116, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  
-    (31, '급류', '정대건',
-     '예기치 못한 우연으로 얽히게 된 17세 동갑내기 도담과 해솔이, 마치 거센 급류처럼 걷잡을 수 없이 서로에게 빠져드는 애틋한 첫사랑과 관계의 변화를 섬세하고 깊이 있게 그려낸 청춘 로맨스입니다.',
-     15, NULL, 117, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+     14, NULL, 116, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- =========================================================
 -- REVIEW DATA
