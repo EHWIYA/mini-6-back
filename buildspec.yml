@@ -2,19 +2,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 20
-    commands:
-      - npm install -g @angular/cli@17
-  pre_build:
-    commands:
-      - npm install
+      java: corretto17
   build:
     commands:
-      - ng build -c production
+      - ./gradlew build
 artifacts:
   base-directory: build/libs
   files:
     - '**/*'
 cache:
   paths:
-    - node_modules/**/* 
+    - .gradle/**/* 
