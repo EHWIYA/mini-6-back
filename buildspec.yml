@@ -10,6 +10,8 @@ artifacts:
   base-directory: build/libs
   files:
     - '**/*'
+    - appspec.yml
+    - scripts/**/*
 cache:
   paths:
-    - .gradle/**/* 
+    - .gradle/**/*  
