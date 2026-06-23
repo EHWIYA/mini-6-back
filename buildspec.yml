@@ -6,12 +6,14 @@ phases:
   build:
     commands:
       - ./gradlew build
+  post_build:
+    commands:
+      - cp build/libs/bookapp-*.jar app.jar
 artifacts:
-  base-directory: build/libs
   files:
-    - '**/*'
+    - app.jar
     - appspec.yml
     - scripts/**/*
 cache:
   paths:
-    - .gradle/**/*  
+    - .gradle/**/*
