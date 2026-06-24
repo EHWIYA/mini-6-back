@@ -31,7 +31,6 @@ hooks:
   BeforeInstall:
     - location: scripts/prepare.sh
       timeout: 60
-      runas: ec2-user
 
   AfterInstall:
     - location: scripts/start.sh
