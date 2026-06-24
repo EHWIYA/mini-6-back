@@ -30,6 +30,12 @@ spring:
     init:
       mode: always
 
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "health"
+
 cloudinary:
   cloud-name: dyi23dc8x
   api-key: 179344155233932
