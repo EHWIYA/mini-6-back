@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  build:
+    commands:
+      - ./gradlew build
+  post_build:
+    commands:
+      - cp build/libs/bookapp-0.0.1-SNAPSHOT.jar app.jar
+artifacts:
+  files:
+    - app.jar
+    - appspec.yml
+    - scripts/**/*
+cache:
+  paths:
+    - .gradle/**/*
