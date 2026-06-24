@@ -6,7 +6,7 @@ spring:
     name: bookapp
 
   datasource:
-    url: jdbc:h2:file:./data/bookdb;AUTO_SERVER=TRUE # 제발 도와줘.. 서버야
+    url: jdbc:h2:mem:bookdb;MODE=MySQL;DB_CLOSE_DELAY=-1 # 제발 도와줘.. 서버야 힘들다
     driver-class-name: org.h2.Driver
     username: mini5
     password: 1234
