@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  pre_build:
+    commands:
+      - chmod +x gradlew
+  build:
+    commands:
+      - ./gradlew test --no-daemon
+
+reports:
+  unit-test-report:
+    files:
+      - "**/*"
+    base-directory: build/test-results/test
+    file-format: JUNITXML
+
+artifacts:
+  files:
+    - build/reports/tests/test/**/*
+    - build/test-results/test/**/*
+  discard-paths: no
+
+cache:
+  paths:
+    - .gradle/caches/**/*
+    - .gradle/wrapper/**/*
